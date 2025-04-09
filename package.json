@@ -4,14 +4,16 @@
   "description": "Um clone do tabnews, como forma de estudo do curso.dev",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run services:up && next dev",
+    "services:up": "docker compose -f infra/compose.yaml up -d && next dev",
+    "services:stop": "docker compose -f infra/compose.yaml stop",
+    "services:down": "docker compose -f infra/compose.yaml down",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "docker": "docker compose -f infra/compose.yaml up -d",
-    "docker:down": "docker compose -f infra/compose.yaml down",
-    "teste": "npm run dev test docker"
+    "docker:down": "docker compose -f infra/compose.yaml down"
   },
   "author": "",
   "license": "MIT",
